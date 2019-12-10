@@ -1,0 +1,72 @@
+<div class="container">
+  <h1>Hello. Welcome to my Garage</h1>
+
+  <button (click)="getAllDaCars()">Get All Da Cars Like a "G"</button>
+
+  <table class="table table-hover table-dark">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Year</th>
+        <th scope="col">Make</th>
+        <th scope="col">Model</th>
+        <th scope="col">Miles</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr (click)="selectedCar = car" scope="row" *ngFor="let car of cars">
+        <td>{{ car._id }}</td>
+        <td>{{ car.year }}</td>
+        <td>{{ car.make }}</td>
+        <td>{{ car.model }}</td>
+        <td>{{ car.miles }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <form>
+      <div class="form-group">
+        <label>Year</label>
+        <input
+          class="form-control ml-1"
+          type="number"
+          name="year"
+          [(ngModel)]="newCar.year"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Make</label>
+        <input
+          class="form-control ml-1"
+          type="text"
+          name="make"
+          [(ngModel)]="newCar.make"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Model</label>
+        <input
+          class="form-control ml-1"
+          type="text"
+          name="model"
+          [(ngModel)]="newCar.model"
+        />
+      </div>
+      <button class="btn btn-info" (click)="submitNewCar()">Submit</button>
+    </form>
+  </div>
+  {{ newCar | json }}
+  <div class="row" *ngIf="selectedCar">
+    <div class="col">
+      <p>{{ selectedCar._id }}</p>
+      <p>{{ selectedCar.year }}</p>
+      <p>{{ selectedCar.make }}</p>
+      <p>{{ selectedCar.model }}</p>
+      <p>{{ selectedCar.miles }}</p>
+      <p>{{ selectedCar.createdAt | date }}</p>
+      <p>{{ selectedCar.updatedAt | date }}</p>
+    </div>
+  </div>
+</div>
